@@ -7,8 +7,10 @@ class Player
 		@turn = 0
 		@guessed = []
 		@word_so_far = []
+	end
 
-		for i in 0..4
+	def initialize_word_so_far(count)
+		for i in 1..count
 			@word_so_far.push("_")
 		end
 	end

@@ -9,7 +9,9 @@ player = Player.new(gets.chomp)
 
 puts "Good luck #{player.name}!"
 
-puts "the word: #{game.guess_word}"
+player.initialize_word_so_far(game.guess_word.length)
+
+puts game.guess_word
 
 while(!game.game_over)
 	player.print_word_so_far
