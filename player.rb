@@ -20,23 +20,23 @@ class Player
 		if !(@guessed.include? letter)
 			@guessed.push(letter)
 			@turn+=1
-		else
-			puts "you already guessed that letter"
-		end
 
-		if indexes.length > 0
-			for i in 0..indexes.length-1
-				word_so_far[indexes[i]] = letter
+			if indexes.length > 0
+				for i in 0..indexes.length-1
+					word_so_far[indexes[i]] = letter
+				end
+			else
+				puts "that letter is not in this word"
+				@mistakes+=1
 			end
 		else
-			puts "that letter is not in this word"
-			@mistakes+=1
+			puts "you already guessed that letter"
 		end
 	end
 
 	def print_word_so_far
 		print "\n"
-		
+
 		for i in word_so_far 
 			print (i + " ")
 		end
