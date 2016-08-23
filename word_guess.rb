@@ -1,20 +1,22 @@
 require_relative 'player'
 require_relative 'game'
 
-puts "Welcome to Word Guess"
+puts "Welcome to Word Guess\n\n"
 game = Game.new
 
 print "What is your username? "
 player = Player.new(gets.chomp)
 
-puts "Good luck #{player.name}!"
+puts "Good luck #{player.name}!\n\n"
 
 player.initialize_word_so_far(game.guess_word.length)
 
-puts game.guess_word
-
 while(!game.game_over)
 	player.print_word_so_far
+
+	if player.guessed.length > 0
+		puts "You have guessed these letters: #{player.guessed}"
+	end
 
 	print "what is your guess? (letter) "
 	letter = gets.chomp
@@ -31,6 +33,6 @@ while(!game.game_over)
 	if game.guess_word == player.word_so_far.join
 		player.print_word_so_far
 		puts "You win!"
-		game.game_over = true
+		game.game_over = true	
 	end
 end
