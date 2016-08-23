@@ -21,22 +21,7 @@ while(!game.game_over)
 	print "what is your guess? (letter) "
 	letter = gets.chomp
 
-	indexes = []
-	for i in 0..game.guess_word.length
-		if letter == game.guess_word[i]
-			indexes.push(i)
-		end
-	end
+	player.make_guess(game.matching_indexes(letter), letter)
 
-	player.make_guess(indexes, letter)
-
-	if game.guess_word == player.word_so_far.join
-		player.print_word_so_far
-		puts "You win!"
-		game.game_over = true
-	elsif player.mistakes == game.allowed_mistakes
-		puts "You lose!"
-		puts "The word was #{game.guess_word}"
-		game.game_over = true	
-	end
+	game.execute_turn(player)
 end
