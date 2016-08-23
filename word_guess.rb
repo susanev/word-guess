@@ -11,17 +11,33 @@ puts "Good luck #{player.name}!\n"
 
 player.initialize_word_so_far(game.guess_word.length)
 
+puts game.guess_word
+
 while(!game.game_over)
 	player.print_word_so_far
 
-	if player.guessed.length > 0
-		puts "You have guessed these letters: #{player.guessed}"
+	if player.guessed_letters.length > 0
+		puts "You have guessed these letters: #{player.guessed_letters}"
 	end
 
-	print "what is your guess? (letter) "
-	letter = gets.chomp
+	if player.guessed_words.length > 0
+		puts "You have guessed these words: #{player.guessed_words}"
+	end
 
-	player.make_guess(game.matching_indexes(letter), letter)
+	print "what is your guess? "
+	guess = gets.chomp
+
+	if guess.length > 1
+		player.guessed_words.push(guess)
+		if guess == game.guess_word
+			game.win
+		else
+			puts "That is not the correct word"
+			player.mistakes +=1
+		end
+	else
+		player.make_guess(game.matching_indexes(guess), guess)
+	end
 
 	game.execute_turn(player)
 end

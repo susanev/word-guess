@@ -12,13 +12,9 @@ class Game
 
 	def execute_turn(player)
 		if @guess_word == player.word_so_far.join
-			player.print_word_so_far
-			puts "You win!"
-			@game_over = true
+			win
 		elsif player.mistakes == @allowed_mistakes
-			puts "You lose!"
-			puts "The word was #{@guess_word}"
-			@game_over = true	
+			lose
 		end
 	end
 
@@ -30,5 +26,17 @@ class Game
 			end
 		end
 		return indexes
+	end
+
+	def win
+		puts @guess_word
+		puts "You win!"
+		@game_over = true
+	end
+
+	def lose
+		puts "You lose!"
+		puts "The word was #{@guess_word}"
+		@game_over = true	
 	end
 end

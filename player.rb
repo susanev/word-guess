@@ -1,12 +1,13 @@
 class Player 
 
-	attr_accessor :name, :turn, :guessed, :word_so_far, :mistakes
+	attr_accessor :name, :turn, :guessed_letters, :guessed_words, :word_so_far, :mistakes
 
 	def initialize(name)
 		@name = name
 		@turn = 0
 		@mistakes = 0
-		@guessed = []
+		@guessed_letters = []
+		@guessed_words = []
 		@word_so_far = []
 	end
 
@@ -17,8 +18,8 @@ class Player
 	end
 
 	def make_guess(indexes, letter)
-		if !(@guessed.include? letter)
-			@guessed.push(letter)
+		if !(@guessed_letters.include? letter)
+			@guessed_letters.push(letter)
 			@turn+=1
 
 			if indexes.length > 0
