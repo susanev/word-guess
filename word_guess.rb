@@ -7,7 +7,7 @@ game = Game.new
 print "What is your username? "
 player = Player.new(gets.chomp)
 
-puts "Good luck #{player.name}!\n\n"
+puts "Good luck #{player.name}!\n"
 
 player.initialize_word_so_far(game.guess_word.length)
 
@@ -33,6 +33,10 @@ while(!game.game_over)
 	if game.guess_word == player.word_so_far.join
 		player.print_word_so_far
 		puts "You win!"
+		game.game_over = true
+	elsif player.mistakes == game.allowed_mistakes
+		puts "You lose!"
+		puts "The word was #{game.guess_word}"
 		game.game_over = true	
 	end
 end
